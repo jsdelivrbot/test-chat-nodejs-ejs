@@ -1,0 +1,14 @@
+<% include header %>
+  <div class="container">
+    <h1><%= locals.test %></h1>
+    <form class="ui form" action="/" method="post">
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea name="message" id="message"></textarea>
+      </div>
+      <button type="submit" class="ui blue labeled submit icon button">
+        <i class="icon edit"></i>Envoyer
+      </button>
+    </form>
+  </div>
+<% include footer %>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Matcha</title>
+    <link rel="stylesheet" href="/assets/semantic/semantic.min.css">
+  </head>
+  <body>
+    <div class="ui inverted menu">
+      <a href="/" class="header item">Accueil</a>
+    </div>
+    <% if (locals.flash && locals.flash.error) { %>
+    <div class="ui negative message">
+      <%= flash.error %>
+    </div>
+    <% } %>
