@@ -2,6 +2,7 @@ let express = require('express')
 let app = express()
 let bodyParser = require('body-parser')
 let session = require('express-session')
+let moment = require('moment')
 
 // Moteur de template
 app.set('view engine', 'ejs')
@@ -18,33 +19,33 @@ app.use(session({
 }))
 app.use(require('./middlewares/flash'))
 
+
 // Routes
 app.get('/', (request, response) => {
-  console.log(request.session)
-  response.render('pages/index')
+  let Message = require('./models/message')
+  Message.all(function (messages) {
+    response.render('pages/index', {messages: messages, moment: moment})
+  })
+})
+
+app.get('/message/:id', (req, res) => {
+  let Message = require('./models/message')
+  Message.find(req.params.id, function (message) {
+    res.render('messages/show', {message: message, moment: moment})
+  })
 })
 
 app.post('/', (request, response) => {
-  console.log(request.body.message)
   if (request.body.message === undefined || request.body.message === '') {
     request.flash('error', "Vous n'avez pas poste de message")
     response.redirect('/')
-  }
-  else {
-
-  var MongoClient = require('mongodb').MongoClient
-    , assert = require('assert')
-
-  // Connection URL
-  var url = 'mongodb://localhost:27017/matcha';
-  // Use connect method to connect to the Server
-  MongoClient.connect(url, function(err, db) {
-    assert.equal(null, err)
-    console.log("Connected correctly to server")
-
-    db.close();
-  })
-
-  }
+  } else {
+      let Message = require('./models/message')
+      Message.create(request.body.message, function () {
+      request.flash('success', "Merci")
+      response.redirect('/')
+      })
+    }
 })
+
 app.listen(8080)

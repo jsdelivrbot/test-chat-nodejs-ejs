@@ -9,6 +9,11 @@
     <div class="ui inverted menu">
       <a href="/" class="header item">Accueil</a>
     </div>
+    <% if (locals.flash && locals.flash.success) { %>
+    <div class="ui positive message">
+      <%= flash.success %>
+    </div>
+    <% } %>
     <% if (locals.flash && locals.flash.error) { %>
     <div class="ui negative message">
       <%= flash.error %>

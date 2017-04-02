@@ -1,0 +1,19 @@
+<% include ../pages/header %>
+    <div class="container" style="margin-left: 5em">
+        <h1><%= locals.test %></h1>
+        <div class="ui comments">
+                <div class="comment">
+                  <a class="" href="/message/<%= message._id %>">
+                    <div class="content">
+                      <div class="metadata">
+                        <%= moment(message.date).fromNow() %>
+                      </div>
+                      <div class="text">
+                            <%= message.text %>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+        </div>
+    </div>
+  <% include ../pages/footer %>
