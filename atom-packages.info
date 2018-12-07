@@ -9,4 +9,4 @@ platformio-ide-terminal
 seti-icons
 
 brew:
-curl -fsSL https://rawgit.com/kube/42homebrew/master/install.sh | zsh
+curl -fsSL https://cdn.jsdelivr.net/gh/kube/42homebrew/install.sh | zsh
